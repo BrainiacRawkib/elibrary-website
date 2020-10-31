@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load l10n %}
+{% load humanize %}
+{% load divide_filter email_slice %}
+
+
+{% block content %}
+    <div class="container">
+        {% include 'partials/_library_pro.html' %}
+
+        <h3 class="my-3 text-center" id="search-error">
+            Donors
+        </h3>
+        <div class="container col-md-5">
+            <p class="btn btn-primary btn-block">
+                <a href="{% url 'donations:donate' %}" class="text-white text-decoration-none font-weight-bold">
+                    Donate <i class="fas fa-donate"></i>
+                </a>
+            </p>
+        </div>
+        <div class="row">
+            {% for donor in donors %}
+                {% if donor.payment_status == 'paid' %}
+                    <div class="col-md-3 my-2">
+                        <div class="card-deck">
+                            <div class="card bg-light">
+                                <div class="card-body text-center">
+                                    <p class="card-text font-weight-bolder">
+                                        {% if donor.customer.email %}
+                                            {{ donor.customer.email|format_email }}
+                                        {% else %}
+                                            Anonymous
+                                        {% endif %}
+                                        <small class="card-text text-secondary font-weight-bolder">donated</small>
+                                            ${{ donor.amount_total|div:100|intcomma }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% empty %}
+                <div class="container mt-5 text-center">
+                    <p class="lead" id="search-error">
+                        No Donor Yet
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

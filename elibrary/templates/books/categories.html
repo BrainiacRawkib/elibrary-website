@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        {% include 'partials/_library_pro.html' %}
+
+        <h3 class="my-3 text-center" id="search-error">
+            Categories
+        </h3>
+        <div class="row mt-5">
+            {% for c in categories %}
+                <div class="col-md-3 my-2">
+                    <div class="card-deck">
+                        <div class="card bg-light">
+                            <div class="card-body text-center">
+                                <p class="card-text font-weight-bolder">
+                                    <a href="{{ c.get_absolute_url }}" class="card-link">
+                                        {{ c.name }}
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="container mt-5 text-center">
+                    <p class="lead" id="search-error">
+                        No Category in the List
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    {% if category.get_absolute_url %}
+        <div class="container my-5">
+            <h3 class="text-center font-weight-bold">{{ category.name }} Books</h3>
+            <div class="row">
+                {% for book in books %}
+                    <div class="col-md-3 my-2">
+                        <div class="card w-100" style="width: 300px">
+                        <div class="card-header font-weight-bold text-center">
+                            {{ book.extension|cut:'.'|capfirst }}
+                        </div>
+                            <img src="{{ book.cover.url }}" alt="{{ book.title }}" class="card-img" height="300">
+                        <div class="card-footer">
+                            <p class="card-text font-weight-bold text-center">ISBN: {{ book.isbn }}</p>
+                            <div class="text-center">
+                                <a href="{{ book.get_absolute_url }}" class="btn btn-primary btn-block font-weight-bold">
+                                Details
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                {% empty %}
+                    <div class="container mt-5 text-center">
+                        <p class="lead" id="search-error">
+                            No Book Available in this Category
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    </div>
+{% endblock %}

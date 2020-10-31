@@ -1,0 +1,27 @@
+@import "utilities";
+@import "register";
+@import "about";
+@import "search";
+@import "contact";
+@import "mobile";
+//@import "input-file";
+
+
+#e_navbar {
+  background: linear-gradient(to right, $secondary-color, $primary-color) !important;
+
+    li.active {
+      //background: black;
+      //color: #171a1d !important;
+      background: linear-gradient(to right, rgba(5, 5, 12, 0.5), rgba(17, 27, 36, 0.7)) !important;
+      border-radius: 15px;
+    }
+  a {
+    color: #f7f7f7;
+    font-size: 1.3rem !important;
+  }
+}
+
+textarea {
+  resize: none !important;
+}

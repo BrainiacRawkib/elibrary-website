@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container col-md-4">
+    {% include 'partials/_library_pro.html' %}
+        <div class="card">
+                <div class="card-header">
+                    <h4 class="text-center font-weight-bolder">
+                        Sign Up <i class="fas fa-user-plus"></i>
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            {{ form|crispy }}
+                        </fieldset>
+                        <button type="submit" class="btn btn-primary form-control font-weight-bolder">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+        </div>
+
+        <div class="col">
+            <hr>
+            <h5 class="text-center text-secondary">
+                or
+            </h5>
+            <hr>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <a href="{% url 'social:begin' 'github' %}" class="text-decoration-none font-weight-bold btn btn-dark form-control">
+                    Sign Up with GitHub <i class="fab fa-github"></i>
+                </a>
+                <a href="{% url 'social:begin' 'facebook' %}" class="text-decoration-none font-weight-bold btn btn-primary form-control mt-3">
+                    Sign Up with Facebook <i class="fab fa-facebook-f"></i>
+                </a>
+{#                    <a href="{% url 'social:begin' 'linkedin-oauth2' %}" class="text-decoration-none font-weight-bold btn btn-primary form-control mt-3">#}
+{#                        Linkedin <i class="fab fa-linkedin-in"></i>#}
+{#                    </a>#}
+            </div>
+        </div>
+    </div>
+{% endblock %}

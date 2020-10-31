@@ -1,0 +1,220 @@
+#header {
+    height: 50px;
+    background: linear-gradient(to right, #ff6658, #43cd00) !important;
+    color: #fff;
+}
+
+#header #head {
+    font-weight: bolder;
+    font-family: "Lucida Handwriting", Courier, monospace;
+}
+
+#branding h1 {
+    color: #fff;
+}
+
+#user-tools {
+    font-size: 13px;
+    font-weight: 900 !important;
+    color: #4e555b;
+}
+
+#user-tools strong {
+    font-family: "Lucida Handwriting", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+}
+
+#user-tools a {
+    text-decoration: none;
+    border-bottom: none;
+}
+
+#content h1 {
+    font-weight: bolder;
+    font-style: italic;
+    text-transform: uppercase;
+    font-family: "Lucida Handwriting", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+}
+
+#content-main .addlink, #content-main .changelink, #content-main .historylink, #content-main .deletelink {
+    font-family: "Lucida Handwriting", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+}
+
+#content-main caption .section {
+    font-family: "Lucida Handwriting", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+    font-weight: 900;
+}
+
+tbody a {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 14px;
+}
+
+#content-related #recent-actions-module h2 {
+    font-weight: 900;
+    text-transform: capitalize;
+    font-family: "Lucida Handwriting", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+}
+
+#content-related #recent-actions-module h3 {
+    text-transform: capitalize;
+    font-family: "Lucida Handwriting", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+}
+
+#content-related .actionlist a {
+    font-size: 14px;
+    text-transform: capitalize;
+    font-family: "Lucida Handwriting", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+}
+
+#content-related .actionlist span.mini {
+    font-size: 12px;
+}
+
+.form-row label.required {
+    font-family: "Lucida Handwriting", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+}
+
+a:link, a:visited {
+    color: #10284e;
+}
+
+div.breadcrumbs {
+    background: #30caa0;
+    color: #ebebeb;
+}
+
+div.breadcrumbs a {
+    color: #333;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+}
+
+div.breadcrumbs a:visited, div.breadcrumbs a:hover, div.breadcrumbs a:active {
+    text-decoration: none;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: #30caa0;
+}
+
+
+/* Button */
+
+.button, input[type="submit"], input[type="button"], .submit-row input, a.button {
+    background: #10284e;
+    color: #fff;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-style: italic;
+    font-size: large;
+}
+
+/* Login Form */
+
+#content a[href="/admin/"] {
+    font-family: "Courier New", Courier, monospace;
+    font-size: medium;
+}
+
+label[for="id_username"] {
+    font-weight: bold;
+}
+
+label[for="id_password"] {
+    font-weight: bold;
+}
+
+input#id_username {
+    font-size: 14px;
+}
+
+input#id_password {
+    font-size: 14px;
+}
+
+input[value="Log in"] {
+    font-family: "Lucida Handwriting", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+
+
+/* Table Styles */
+
+#result_list thead th{
+    background: #30caa0;
+}
+
+#result_list thead th a{
+    color: #ffffff;
+    background: inherit;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+}
+
+#result_list thead th:hover{
+    background: #4e555b;
+}
+
+#result_list tbody tr:nth-child(even){
+    background-color: #f2f2f2
+}
+
+#result_list tbody tr:hover {
+    background-color: #ddd;
+    font-style: italic;
+}
+
+
+/* Pagination */
+
+p.paginator {
+    margin-top: 5px;
+    border-top: none;
+    display: inline-block;
+}
+
+p.paginator a, p.paginator span, p.paginator .showall {
+    float: left;
+    font-family: "Lucida Handwriting", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+    font-size: 19px;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+    border-radius: 5px;
+}
+
+p.paginator .this-page {
+    background: #30caa0;
+    font-size: 19px;
+    color: white;
+    border: 1px solid #30caa0;
+}
+
+p.paginator a:hover:not(.this-page){
+    background: #30caa0;
+    color: #fbfcfc;
+}
+
+
+/* Mobile Responsiveness */
+
+@media (max-width: 1024px) {
+    #header {
+        display: block;
+        padding: 15px 30px;
+        height: auto;
+        line-height: 1;
+    }
+}
+
+@media (max-width: 767px) {
+    input[value="Log in"] {
+        font-size: 16px;
+        text-transform: capitalize !important;
+    }
+}

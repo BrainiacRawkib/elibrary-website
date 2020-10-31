@@ -1,0 +1,57 @@
+.pro-btn {
+  background: linear-gradient(to right, #43efff, #4cfa20) !important;
+  color: #f7f7f7;
+  font-size: 16px;
+}
+
+#about-text {
+  font-size: 1.2rem;
+  line-height: 2rem;
+}
+
+#search-error {
+  font-size: 1.8rem;
+  font-weight: bolder;
+}
+
+#message {
+  font-size: 1.2rem;
+  resize: none;
+}
+
+#contact-btn {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+kbd {
+  border-radius: 15px;
+}
+@media only screen and (orientation: portrait) {
+  kbd {
+    font-size: 2rem;
+  }
+  #logo {
+    width: 50px;
+    height: 43px;
+    margin-bottom: 1px;
+  }
+}
+
+#e_navbar {
+  background: linear-gradient(to right, #ff6699, #43cd23) !important;
+}
+#e_navbar li.active {
+  background: linear-gradient(to right, rgba(5, 5, 12, 0.5), rgba(17, 27, 36, 0.7)) !important;
+  border-radius: 15px;
+}
+#e_navbar a {
+  color: #f7f7f7;
+  font-size: 1.3rem !important;
+}
+
+textarea {
+  resize: none !important;
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        {% include 'partials/_library_pro.html' %}
+        <div class="container col-md-5">
+            <h1 class="text-center">
+                <i class="fas fa-thumbs-up fa-10x display-1"></i>
+            </h1>
+            <h2>Your payment was successful.</h2>
+            <p class="font-italic text-center display-4">
+                We really appreciate your <strong class="font-weight-bolder" id="amount"></strong> donation.
+            </p>
+            <h2 class="text-center font-italic">
+                Thanks for your support.
+            </h2>
+            <p class="mt-4 font-weight-bold text-center">
+                <a href="{% url 'home:index' %}" class="btn btn-primary font-weight-bold">
+                    <i class="fas fa-cloud-download-alt"></i> Download
+                </a> more books for free.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        var params = new URLSearchParams(window.location.search)
+        var sessionId = params.get('session_id')
+        var amount = document.getElementById('amount')
+
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2
+        })
+
+        fetch('/get-session/?session_id=' + sessionId)
+        .then((response) => response.json())
+        .then((session) => {
+            {#amount.innerText = formatter.format(session.payment_intent.amount / 100)#}
+            amount.innerText = formatter.format(session.amount_total / 100)
+        })
+        .catch((error) => {
+            console.log(('Error:' + error))
+        })
+    </script>
+{% endblock %}

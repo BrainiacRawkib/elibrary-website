@@ -1,0 +1,15 @@
+<!-- Search Bar -->
+<div class="container col-sm-8">
+    <form action="{% url 'home:search' %}" class="mt-3">
+        <label for="search"></label>
+        <div class="input-group">
+            <input type="search" name="keywords" class="form-control form-control-lg" id="search" placeholder="Search Book title or an Author name or ISBN..." value="{{ values.keywords }}">
+            <div class="input-group-append">
+{#                <input type="submit" class="btn btn-success font-weight-bold" value="Search">#}
+                <button type="submit" class="btn btn-success font-weight-bold" >
+                    <i class="fas fa-search fa-2x"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

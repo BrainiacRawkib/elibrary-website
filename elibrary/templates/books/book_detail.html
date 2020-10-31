@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container-fluid">
+        {% include 'partials/_library_pro.html' %}
+
+        <div class="row mt-5 mb-4">
+            <div class="col-md-2">
+                <div class="card">
+                    <img src="{{ book.cover.url }}" alt="" class="card-img-top" height="220">
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h3 class="font-weight-bolder font-italic" id="book-title">{{ book.title }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-5">
+                                <h2 class="mb-3 card-title font-weight-bolder">Book Details</h2>
+                                <p class="card-text font-weight-bold text-secondary">Title: {{ book.title }}</p>
+                                <p class="card-text font-weight-bold text-secondary">Isbn: {{ book.isbn }}</p>
+                                <p class="card-text font-weight-bold text-secondary">Category: {{ book.category }}</p>
+                                <p class="card-text font-weight-bold text-secondary">Author(s): {{ book.author }}
+{#                                                {% for name in book.author.all %}#}
+{#                                                    {{ name }}#}
+{#                                                {% endfor %}#}
+                                </p>
+                                <p class="card-text font-weight-bold text-secondary">Publisher: {{ book.publisher }}</p>
+                                <p class="card-text font-weight-bold text-secondary">Edition: {{ book.edition }}</p>
+                                <p class="card-text font-weight-bold text-secondary">Pages: {{ book.pages }}</p>
+                                <p class="card-text font-weight-bold text-secondary">Language: {{ book.language }}</p>
+                                <p class="card-text font-weight-bold text-secondary">Year: {{ book.pub_year|date:'Y' }}</p>
+                                <p class="card-text font-weight-bold text-secondary">File Type: {{ book.extension|cut:"."|capfirst }}</p>
+{#                                <p class="card-text font-weight-bold text-secondary">Size: {{ book.size|filesizeformat }}</p>#}
+                                <p class="card-text font-weight-bold text-secondary">Summary: {{ book.summary|safe }}</p>
+                                {% if user.is_authenticated %}
+                                    <a href="{% url 'books:download' book.title book.isbn %}" class="btn btn-primary font-weight-bold" id="download-btn" onclick="downloadFunc()">
+                                        <i class="fas fa-cloud-download-alt"></i> Download
+                                    </a>
+                                {% else %}
+                                    <p class="font-weight-bold">
+                                        <a href="{% url 'account:login' %}" class="btn btn-primary btn-sm font-weight-bold">
+                                            Login <i class="fas fa-sign-in-alt"></i>
+                                        </a> to download this book
+                                    </p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% if perms.books.edit_book or perms.books.delete_book %}
+                    <div class="card-footer">
+                        {% if user.is_authenticated and perms.books.edit_book %}
+                            <a href="{% url 'books:edit-book' book.title book.isbn %}" class="btn btn-warning col-md-4 col-sm-12 float-md-left mb-3 font-weight-bold">
+                                <i class="fas fa-edit"></i> Edit Book
+                            </a>
+                        {% endif %}
+                        {% if user.is_authenticated and perms.books.delete_book %}
+                            <a href="{% url 'books:delete-book' book.title book.isbn %}" class="btn btn-danger col-md-4 col-sm-12 float-md-right mb-3 font-weight-bold">
+                                <i class="fas fa-times"></i> Delete Book
+                            </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js" integrity="sha512-WiGQZv8WpmQVRUFXZywo7pHIO0G/o3RyiAJZj8YXNN4AV7ReR1RYWVmZJ6y3H06blPcjJmG/sBpOVZjTSFFlzQ==" crossorigin="anonymous"></script>#}
+{#    <script>#}
+{#        function downloadFunc(e) {#}
+{#            e.preventDefault();#}
+{#            var a = document.getElementById('download-btn');#}
+{#            var title = document.getElementById('book-title').textContent;#}
+{#            var x = new XMLHttpRequest();#}
+{#            x.open( "GET", a.href.value() , true);#}
+{#            x.responseType = "blob";#}
+{#            x.onload= function(e){download(e.response, title, "application/octet-stream");};#}
+{#            x.send();#}
+{#        }#}
+{#    </script>#}
+{% endblock %}

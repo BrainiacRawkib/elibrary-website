@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        {% include 'partials/_library_pro.html' %}
+        <div class="container col-md-5">
+            <form>
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4 font-weight-bolder text-center">Logged Out</legend>
+                    <p class="font-weight-bold text-center">
+                        You've successfully logged out
+                    </p>
+                </fieldset>
+                <a href="{% url 'account:login' %}" class="btn font-weight-bolder btn-primary form-control">
+                    Login <i class="fas fa-sign-in-alt"></i>
+                </a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

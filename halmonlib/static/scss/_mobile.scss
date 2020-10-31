@@ -1,0 +1,7 @@
+kbd {
+  //background: linear-gradient(to right, $primary-color, $secondary-color) !important;
+  border-radius: 15px;
+  @media only screen and (orientation: portrait) {
+    font-size: 2rem;
+  }
+}

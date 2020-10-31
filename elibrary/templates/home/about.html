@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid">
+        {% include 'partials/_library_pro.html' %}
+        <div class="container">
+            <div class="row">
+                <p class="text-justify" id="about-text">
+                    {% lorem 4 p %}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container mb-3">
+        <h3 class="text-center font-weight-bold">Meet The Developer</h3>
+        <br>
+            <div class="row">
+                <div class="col-md-4 mx-auto">
+                    <div class="card">
+                        <img src="{% static 'img/logo.png' %}" alt="developer" class="card-img-top" width="250" height="300">
+                        <hr>
+                        <div class="card-body">
+                            <div class="d-flex flex-row justify-content-around">
+                                <a href="#" class="card-link text-dark">
+                                    <i class="fab fa-linkedin-in fa-2x"></i>
+                                </a>
+                                <a href="#" class="card-link text-dark">
+                                    <i class="fab fa-twitter fa-2x"></i>
+                                </a>
+                                <a href="#" class="card-link text-dark">
+                                    <i class="fab fa-github fa-2x"></i>
+                                </a>
+                                <a href="#" class="card-link text-dark">
+                                    <i class="fab fa-stack-overflow fa-2x"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mx-auto">
+                    <div class="card">
+                        <img src="{% static 'img/logo.png' %}" alt="developer" class="card-img-top" width="250" height="300">
+                        <hr>
+                        <div class="card-body">
+                            <div class="d-flex flex-row justify-content-around">
+                                <a href="#" class="card-link text-dark">
+                                    <i class="fab fa-linkedin-in fa-2x"></i>
+                                </a>
+                                <a href="#" class="card-link text-dark">
+                                    <i class="fab fa-twitter fa-2x"></i>
+                                </a>
+                                <a href="#" class="card-link text-dark">
+                                    <i class="fab fa-github fa-2x"></i>
+                                </a>
+                                <a href="#" class="card-link text-dark">
+                                    <i class="fab fa-stack-overflow fa-2x"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mx-auto">
+                    <div class="card">
+                        <img src="{% static 'img/logo.png' %}" alt="developer" class="card-img-top" width="250" height="300">
+                        <hr>
+                        <div class="card-body">
+                            <div class="d-flex flex-row justify-content-around">
+                                <a href="#" class="card-link text-dark">
+                                    <i class="fab fa-linkedin-in fa-2x"></i>
+                                </a>
+                                <a href="#" class="card-link text-dark">
+                                    <i class="fab fa-twitter fa-2x"></i>
+                                </a>
+                                <a href="#" class="card-link text-dark">
+                                    <i class="fab fa-github fa-2x"></i>
+                                </a>
+                                <a href="#" class="card-link text-dark">
+                                    <i class="fab fa-stack-overflow fa-2x"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

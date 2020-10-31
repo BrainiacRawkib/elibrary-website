@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        {% include 'partials/_library_pro.html' %}
+        <div class="container col-md-5">
+            <form id="payment-form">
+                <label for="donate_type" class="font-weight-bold">Donate Type:</label>
+                <select name="donate_type" id="donate_type" class="form-control">
+                    <option selected="true" disabled="disabled">Choose Donation Type</option>
+                    {% for k, v in donate_type.items %}
+                        <option value="{{ k }}">{{ v }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="amount" class="font-weight-bold my-2">Amount:</label>
+{#                <input type="number" id="amount" min="5" name="amount" class="form-control">#}
+                <select name="amount" id="amount" class="form-control">
+                    {% for k, v in choices.items %}
+                          <option value="{{ k }}">{{ v }}</option>
+                      {% endfor %}
+                </select>
+
+                <div class="col">
+                    <hr>
+                    <h6 class="text-center text-secondary">
+                        Billing intervals for recurring donations only
+                    </h6>
+                    <hr>
+                </div>
+
+                <label for="interval" class="font-weight-bold my-2">Billing Interval Type:</label>
+                <select name="interval" id="interval" class="form-control">
+                    {% for k, v in interval.items %}
+                        <option value="{{ k }}">{{ v }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="interval_count" class="font-weight-bold my-2">Billing Interval Count:</label>
+                <select name="interval_count" id="interval_count" class="form-control">
+                    {% for k, v in interval_count.items %}
+                        <option value="{{ k }}">{{ v }}</option>
+                    {% endfor %}
+                </select>
+
+                <button type="button" class="btn btn-primary form-control font-weight-bold my-3" data-toggle="modal" data-target="#user-details">
+                    Proceed <i class="fa fa-arrow-alt-circle-right"></i>
+                </button>
+            </form>
+
+            <div class="modal fade" id="user-details">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="modal-title text-center">
+                                <h4 class="font-weight-bold">
+                                    Proceed to Checkout <i class="fa fa-arrow-alt-circle-right"></i>
+                                </h4>
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-group">
+                                <label for="name" class="mt-2 font-weight-bold">Name:</label>
+                                <input type="text" name="name" id="name" class="form-control"
+                                       {% if user.is_authenticated %}
+                                           value="{{ user.username }}"
+                                       readonly
+                                       {% endif %}
+                                        required
+                                >
+
+                                <label for="email" class="mt-2 font-weight-bold">Email:</label>
+                                <input type="email" name="email" id="email" class="form-control"
+                                       {% if user.is_authenticated %}
+                                           value="{{ user.email }}"
+                                       readonly
+                                       {% endif %}
+                                        required
+                                >
+
+                                <button id="checkout-button" class="btn btn-primary form-control font-weight-bold my-3">
+                                    <i class="fas fa-donate"></i> Checkout
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="https://js.stripe.com/v3/"></script>
+
+   <script charset="UTF-8">
+      var stripe = Stripe('pk_test_51HALsJECztJ6Vd5V3uY637RfQ0Q5qy7EFs5482SzuPX22M2IIZiEpyJdrMbvrTLZe54HOc63FUtAgMHoeO0NIpqr00oyvgF7aN');
+      var name = document.getElementById('name');
+      var email = document.getElementById('email');
+      var donate_type = document.getElementById('donate_type');
+      var amount = document.getElementById('amount');
+      var interval = document.getElementById('interval');
+      var interval_count = document.getElementById('interval_count');
+      var checkoutButton = document.getElementById('checkout-button');
+
+      checkoutButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          checkDonationType()
+      });
+
+      function checkDonationType() {
+          if (donate_type.value === 'recurring'){
+              recurringSessionAndRedirect()
+          }
+          else {
+              createSessionAndRedirect()
+          }
+      }
+
+      function createSessionAndRedirect() {
+          fetch('/one-time/', {
+          method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: name.value,
+                email: email.value,
+                amount: amount.value,
+                donate_type: donate_type.value,
+            })
+          })
+          .then((response) => {return response.json();})
+          .then((session) => {
+              return stripe.redirectToCheckout({ sessionId: session });
+            })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      }
+
+      function recurringSessionAndRedirect() {
+          fetch('/recurring/', {
+          method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                donate_type: donate_type.value,
+                name: name.value,
+                email: email.value,
+                amount: amount.value,
+                interval: interval.value,
+                interval_count: interval_count.value,
+            })
+          })
+          .then((response) => {return response.json();})
+          .then((session) => {
+              return stripe.redirectToCheckout({ sessionId: session });
+            })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      }
+   </script>
+
+{% endblock %}

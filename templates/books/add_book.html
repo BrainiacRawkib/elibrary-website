@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container mb-4">
+        {% include 'partials/_library_pro.html' %}
+        <div class="container col-md-10">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4 font-weight-bold">Add New Book</legend>
+                    {{ form.media }}
+                    {{ form|crispy }}
+                </fieldset>
+                <button type="submit" class="btn btn-primary form-control font-weight-bold">
+                    <i class="fa fa-cloud-upload-alt"></i> Upload
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

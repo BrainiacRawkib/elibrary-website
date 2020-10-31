@@ -1,0 +1,31 @@
+<!-- Contact Modal -->
+<div class="modal fade" id="contact-form">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title text-center">
+                    <h4 class="font-weight-bold text-center">
+                        Send a message
+                    </h4>
+                </div>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="contact-form" action="{% url 'home:contact' %}">
+                    {% csrf_token %}
+                    <label for="name" class="font-weight-bold">Name:</label>
+                    <input type="text" class="form-control form-control-lg mb-3" id="name" name="name" placeholder="Your name..." required>
+
+                    <label for="email" class="font-weight-bold">Email:</label>
+                    <input type="email" class="form-control form-control-lg mb-3" id="email" name="email" placeholder="user@gmail.com" required>
+
+                    <label for="message" class="font-weight-bold">Message:</label>
+                    <textarea name="message" class="form-control form-group-lg mb-3" id="message" cols="30" rows="7" placeholder="Message..." required></textarea>
+                    <button class="btn btn-primary btn-block" id="contact-btn" type="submit">
+                        Send <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
